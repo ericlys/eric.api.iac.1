@@ -38,7 +38,58 @@ resource "aws_iam_role" "ecr-role" {
     Version : "2012-10-17",
   })
 
+  #   inline_policy {
+  #     name = "ecr_app_permission"
+
+  #     policy = jsonencode({
+  #       Version = "2012-10-17"
+  #       Statement = [
+  #       {
+  #         Sid = "Statement1"
+  #         Action: [
+  #           "ecr:GetDownloadUrlForLayer",
+  #           "ecr:BatchGetImage",
+  #           "ecr:BatchCheckLayerAvailability",
+  #           "ecr:PutImage",
+  #           "ecr:InitiateLayerUpload",
+  #           "ecr:UploadLayerPart",
+  #           "ecr:CompleteLayerUpload",
+  #           "ecr:GetAuthorizationToken",
+  #         ],
+  #         Effect: "Allow",
+  #         Resource: "*"
+  #       }
+  #     ]
+  #   })
+  # }
+
   tags = {
     IAC = true
   }
+}
+
+resource "aws_iam_role_policy" "ecr_app_policy" {
+  name = "ecr_app_permission"
+  role = aws_iam_role.ecr-role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid = "Statement1"
+        Action : [
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:BatchGetImage",
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:PutImage",
+          "ecr:InitiateLayerUpload",
+          "ecr:UploadLayerPart",
+          "ecr:CompleteLayerUpload",
+          "ecr:GetAuthorizationToken",
+        ],
+        Effect : "Allow",
+        Resource : "*"
+      }
+    ]
+  })
 }
