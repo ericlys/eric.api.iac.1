@@ -9,5 +9,5 @@ terraform {
 
 provider "aws" {
   # profile = "AdministratorAccess-217127483231"
-  region  = "us-east-2"
+  region = "us-east-2"
 }
