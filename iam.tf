@@ -30,7 +30,7 @@ resource "aws_iam_role" "tf-role" {
               "sts.amazonaws.com"
             ],
             "token.actions.githubusercontent.com:sub" : [
-              "repo:ericlys/eric.api.iac1:ref:refs/heads/main"
+              "repo:ericlys/eric.api.iac.1:ref:refs/heads/main"
             ]
           }
         }
