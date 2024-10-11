@@ -44,6 +44,30 @@ resource "aws_iam_role" "tf-role" {
   }
 }
 
+# add role policy para poder subir o terraform
+resource "aws_iam_role_policy" "tf_policy" {
+  name = "tf_policy"
+  role = aws_iam_role.tf-role.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Sid      = "Statement1",
+        Action   = "ecr:*",
+        Effect   = "Allow",
+        Resource = "*"
+      },
+      {
+        Sid      = "Statement2",
+        Action   = "iam:*",
+        Effect   = "Allow",
+        Resource = "*"
+      }
+    ]
+  })
+}
+
 # role para poder fazer a build pelo app runner
 resource "aws_iam_role" "app-runner-role" {
   name = "app-runner-role"
