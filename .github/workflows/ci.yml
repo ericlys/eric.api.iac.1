@@ -41,4 +41,5 @@ jobs:
       #   TF_VAR_git_token: ${{ secrets.GITHUB_TOKEN }}
     
     - name: Run Terraform apply
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -auto-approve
