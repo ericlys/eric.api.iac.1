@@ -135,18 +135,18 @@ resource "aws_iam_role_policy" "ecr_app_policy" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid = "Statement1",
-        Action = "apprunner:*",
-        Effect = "Allow",
+        Sid      = "Statement1",
+        Action   = "apprunner:*",
+        Effect   = "Allow",
         Resource = "*"
       },
       {
         Sid = "Statement2",
         Action = [
-          "iam:PassRole", 
+          "iam:PassRole",
           "iam:CreateServiceLinkedRole"
         ],
-        Effect = "Allow",
+        Effect   = "Allow",
         Resource = "*"
       },
       {
